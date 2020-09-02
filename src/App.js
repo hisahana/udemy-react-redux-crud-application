@@ -1,32 +1,28 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-// Class Component
-class App extends Component {
-  render() {
-    return (
-      <React.Fragment>
-        <Cat />
-        <Cat />
-        <Cat />
-        <Cat />
-        <Cat />
-      </React.Fragment>
-    )
-  }
+function App() {
+  const profiles = [
+    { name: "Taro", age: 10 },
+    { name: "Hanako", age: 5 },
+    { name: "NoName" }
+  ];
+  return (
+    <div>
+      {
+        profiles.map((profile, index) => {
+          return <User name={profile.name} age={profile.age} key={index} />
+        })
+      }
+    </div>
+  )
 }
 
-// Functional Component
-// function App() {
-//   return (
-//     <React.Fragment>
-//       <label htmlFor="bar">bar</label>
-//       <input type="text" onClick={() => console.log('I am clicked')} />
-//     </React.Fragment>
-//   )
-// }
+const User = (props) => {
+  return <div>Hi, I am {props.name}, and {props.age} years old.</div>;
+}
 
-const Cat = () => {
-  return <div>Meow!</div>;
+User.defaultProps = {
+  age: 1
 }
 
 export default App;
